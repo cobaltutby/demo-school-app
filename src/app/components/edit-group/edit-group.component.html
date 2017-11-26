@@ -1,0 +1,29 @@
+<div>
+
+    <p *ngIf="edit" style="text-align: center"> Edit Group:</p>
+    <p *ngIf="!edit" style="text-align: center"> Add New Group:</p>
+
+    <br>
+
+    <div style="display: flex; flex-direction: column; align-items: center;">
+
+
+        <md-input-container>
+            <input mdInput placeholder="Group Name" type="text" required [(ngModel)]="group_to_edit.group_name">
+            <md-hint *ngIf="!validateName(group_to_edit.group_name)">Please enter different name (name should be unique)</md-hint>
+        </md-input-container>
+
+        <br>
+
+        <div>
+            <button [disabled]="!group_to_edit.group_name || !validateName(group_to_edit.group_name)" md-raised-button  [color]="trialService.color"
+                (click)="save()">
+                Submit</button>
+
+            <button md-raised-button  [color]="trialService.color" (click)="cancel()">Cancel</button>
+        </div>
+
+
+    </div>
+
+</div>

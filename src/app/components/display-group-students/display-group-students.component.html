@@ -1,0 +1,59 @@
+<md-card>
+    <md-card-header>
+        Students
+    </md-card-header>
+    <br>
+    <button md-raised-button [color]="trialService.color" (click)="addNewStudent()">Add New Student</button>
+    <button md-raised-button [color]="trialService.color" (click)="returnToGroupsList()">Return to Groups List</button>
+    <br>
+    <br>
+    <div>
+        <md-table #tableRecords [dataSource]="studentDataSource" mdSort>
+            <ng-container mdColumnDef="student_nr">
+                <md-header-cell *mdHeaderCellDef> Student Nr. </md-header-cell>
+                <md-cell *mdCellDef="let row">{{row.student_nr}}
+                </md-cell>
+            </ng-container>
+
+            <ng-container mdColumnDef="first_name">
+                <md-header-cell *mdHeaderCellDef> First Name
+                </md-header-cell>
+                <md-cell *mdCellDef="let row" (click)="editStudent(row)"> {{row.first_name}} </md-cell>
+            </ng-container>
+
+            <ng-container mdColumnDef="second_name">
+                <md-header-cell *mdHeaderCellDef> Second Name
+                </md-header-cell>
+                <md-cell *mdCellDef="let row" (click)="editStudent(row)"> {{row.second_name}} </md-cell>
+            </ng-container>
+            <ng-container mdColumnDef="third_name">
+                <md-header-cell *mdHeaderCellDef> Third Name
+                </md-header-cell>
+                <md-cell *mdCellDef="let row" (click)="editStudent(row)"> {{row.third_name}} </md-cell>
+            </ng-container>
+
+            <ng-container mdColumnDef="email">
+                <md-header-cell *mdHeaderCellDef> Email
+                </md-header-cell>
+                <md-cell *mdCellDef="let row" class="cell-with-edit-icons">
+                    <div>
+                        {{row.email}}
+                    </div>
+
+                    <div>
+                        <button md-icon-button [disabled]="row.members_qty > 0" (click)="deleteStudent(row)">
+                            <md-icon>clear</md-icon>
+                        </button>
+                    </div>
+
+                </md-cell>
+            </ng-container>
+
+            <md-header-row *mdHeaderRowDef="displayedColumns_students"></md-header-row>
+            <md-row *mdRowDef="let row; columns: displayedColumns_students;"></md-row>
+        </md-table>
+    </div>
+    <br>
+
+
+</md-card>

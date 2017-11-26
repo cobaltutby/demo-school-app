@@ -1,0 +1,15 @@
+<div>
+    <div class="header">
+        <div class="application-title">
+            {{configService.projectName}}
+        </div>
+    </div>
+
+    <div class="header-navbar">
+        <md-radio-group [(ngModel)]="trialService.color" class="example-radio-group">
+            <md-radio-button class="example-radio-button" value="primary">Buttons color Blue</md-radio-button>
+            <md-radio-button class="example-radio-button" value="warn">Buttons color Red</md-radio-button>
+        </md-radio-group>
+    </div>
+</div>
+<router-outlet *ngIf="this.trialService.database"></router-outlet>

@@ -1,0 +1,57 @@
+<md-card>
+    <md-card-header>
+        Groups
+    </md-card-header>
+    <br>
+    <button md-raised-button [color]="trialService.color" (click)="addNewGroup()">Add New Group</button>
+    <br>
+    <br>
+    <div>
+        <md-table #tableRecords [dataSource]="groupDataSource" mdSort>
+            <ng-container mdColumnDef="group_id">
+                <md-header-cell *mdHeaderCellDef> Group ID </md-header-cell>
+                <md-cell *mdCellDef="let row" (click)="displayGroupMembers(row.group_id)">{{row.group_id}}
+                </md-cell>
+            </ng-container>
+
+            <ng-container mdColumnDef="group_name">
+                <md-header-cell *mdHeaderCellDef> Group Name
+                </md-header-cell>
+                <md-cell *mdCellDef="let row" (click)="displayGroupMembers(row.group_id)"> {{row.group_name}} </md-cell>
+            </ng-container>
+
+            <ng-container mdColumnDef="gr_creation_time">
+                <md-header-cell *mdHeaderCellDef> Creation Date/Time
+                </md-header-cell>
+                <md-cell *mdCellDef="let row"> {{row.gr_creation_time | date_time}} </md-cell>
+            </ng-container>
+
+            <ng-container mdColumnDef="members_qty">
+                <md-header-cell *mdHeaderCellDef> Members
+                </md-header-cell>
+                <md-cell *mdCellDef="let row" class="cell-with-edit-icons">
+                    <div>
+                        {{row.members_qty}}
+                    </div>
+
+                    <div>
+                        <button md-icon-button>
+                            <md-icon (click)="editGroup(row)">edit</md-icon>
+                        </button>
+                        <button md-icon-button [disabled]="row.members_qty > 0" (click)="deleteGroup(row)">
+                            <md-icon>clear</md-icon>
+                        </button>
+
+                    </div>
+
+                </md-cell>
+            </ng-container>
+
+            <md-header-row *mdHeaderRowDef="displayedColumns_groups"></md-header-row>
+            <md-row *mdRowDef="let row; columns: displayedColumns_groups;"></md-row>
+        </md-table>
+    </div>
+    <br>
+
+
+</md-card>
